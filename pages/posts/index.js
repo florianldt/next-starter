@@ -1,12 +1,11 @@
 import Head from 'next/head';
-import { Layout } from '../components/Layout';
-import { Navigation } from '../components/Navigation';
+import { Layout } from '../../components/Layout';
+import { Navigation } from '../../components/Navigation';
 
-const Home = () => (
+const Posts = () => (
     <Layout>
         <Head>
-            <title>Home</title>
-            <link rel="icon" href="/favicon.ico" />
+            <title>Posts</title>
         </Head>
         <Navigation />
         <div>
@@ -23,4 +22,4 @@ const Home = () => (
     </Layout>
 );
 
-export default Home;
+export default Posts;
