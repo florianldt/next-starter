@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { Layout } from '../../components/Layout';
 import { Navigation } from '../../components/Navigation';
 
@@ -15,6 +16,11 @@ const PostDetail = ({ post }) => (
         {post.body.split('\n').map((p, i) => (
             <p key={i}>{p}</p>
         ))}
+        <Link href={`/posts/${post.id}/comments`}>
+            <a>
+                <h5>See comments</h5>
+            </a>
+        </Link>
     </Layout>
 );
 
