@@ -23,7 +23,7 @@ export const getServerSideProps = async (ctx) => {
     const { id } = ctx.query;
     const res = await fetchPostComments(id);
     return {
-        props: { comments: res.data },
+        props: { postId: id, comments: res.data },
     };
 };
 
