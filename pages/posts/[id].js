@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Layout } from '../../components/Layout';
 import { Navigation } from '../../components/Navigation';
+import { fetchOnePost } from '../../services/api';
 
 const PostDetail = ({ post }) => (
     <Layout>
@@ -26,10 +27,9 @@ const PostDetail = ({ post }) => (
 
 export const getServerSideProps = async (ctx) => {
     const { id } = ctx.query;
-    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
-    const json = await res.json();
+    const res = await fetchOnePost(id);
     return {
-        props: { post: json },
+        props: { post: res.data },
     };
 };
 

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Layout } from '../../../../components/Layout';
 import { Navigation } from '../../../../components/Navigation';
 import { Comment } from '../../../../components/Comment';
+import { fetchPostComments } from '../../../../services/api';
 
 const renderCommentComponents = (comments) =>
     comments.map((comment) => <Comment key={comment.id} comment={comment} />);
@@ -20,12 +21,9 @@ const PostComments = ({ postId, comments }) => (
 
 export const getServerSideProps = async (ctx) => {
     const { id } = ctx.query;
-    const res = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/${id}/comments`,
-    );
-    const json = await res.json();
+    const res = await fetchPostComments(id);
     return {
-        props: { comments: json },
+        props: { comments: res.data },
     };
 };
 

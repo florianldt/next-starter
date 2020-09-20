@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { Layout } from '../../components/Layout';
 import { Navigation } from '../../components/Navigation';
 import { Post } from '../../components/Post';
+import { fetchAllPost } from '../../services/api';
 
 const renderPostComponents = (posts) =>
     posts.map((post) => <Post key={post.id} post={post} />);
@@ -17,10 +18,9 @@ const Posts = ({ posts }) => (
 );
 
 export const getServerSideProps = async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/posts');
-    const json = await res.json();
+    const res = await fetchAllPost();
     return {
-        props: { posts: json },
+        props: { posts: res.data },
     };
 };
 
